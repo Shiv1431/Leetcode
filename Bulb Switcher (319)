@@ -1,0 +1,22 @@
+//optimised method with TC O(1)
+class Solution {
+    public int bulbSwitch(int n) {
+        return (int) Math.sqrt(n);
+    }
+}
+
+
+//without Math.sqrt() function
+class Solution {
+    public int bulbSwitch(int n) {
+        int i=1,count=0;
+        while(i*i<=n){
+            count++;
+            i++;
+        }
+        return count
+    }
+}
+
+
+

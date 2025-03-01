@@ -1,0 +1,64 @@
+//   Brute Force Method
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        int n = nums.length;
+        List<Integer> arr = new ArrayList<>();       
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped) break;
+        }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == target) {
+                arr.add(i);
+            }
+        }
+        return arr;
+    }
+}
+
+
+
+//Optimised Solution
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        Arrays.sort(nums);
+        List<Integer> result = new ArrayList<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                result.add(i);
+            }
+        }
+        
+        return result;
+    }
+}
+
+
+
+// Most optimised solution
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        int lt = 0, ct = 0;
+        
+        for (int num : nums) {
+            if (num < target) lt++;
+            else if (num == target) ct++;
+        }
+
+        List<Integer> res = new ArrayList<>();
+        
+        for (int i = lt; i < lt + ct; i++) {
+            res.add(i);
+        }
+        return res;
+    }
+}

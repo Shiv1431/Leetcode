@@ -1,25 +1,29 @@
 /**
  * Definition for a binary tree node.
- * struct TreeNode {
+ * public class TreeNode {
  *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
  */
 class Solution {
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> vc;
-        inorderHelper(root, vc); 
-        return vc;
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        inorderHelper(root, result);
+        return result;
     }
-    void inorderHelper(TreeNode* root, vector<int>& vc) {
-        if (root == nullptr) return;  
-        inorderHelper(root->left, vc);   
-        vc.push_back(root->val);        
-        inorderHelper(root->right, vc); 
+    
+    private void inorderHelper(TreeNode root, List<Integer> result) {
+        if (root == null) return;
+        inorderHelper(root.left, result);   
+        result.add(root.val);               
+        inorderHelper(root.right, result);  
     }
-};
+}

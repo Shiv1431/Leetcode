@@ -1,0 +1,25 @@
+class Solution {
+    public void recoverTree(TreeNode root) {
+        TreeNode[] nodes = new TreeNode[3];
+        inOrderTraversal(root, nodes);
+        if (nodes[1] != null && nodes[2] != null) {
+            int temp = nodes[1].val;
+            nodes[1].val = nodes[2].val;
+            nodes[2].val = temp;
+        }
+    }
+    public void inOrderTraversal(TreeNode root, TreeNode[] nodes) {
+        if (root == null) {
+            return;
+        }
+        inOrderTraversal(root.left, nodes);
+        if (nodes[0] != null && root.val < nodes[0].val) {
+            if (nodes[1] == null) {
+                nodes[1] = nodes[0];
+            }
+            nodes[2] = root;
+        }
+        nodes[0] = root;
+        inOrderTraversal(root.right, nodes);
+    }
+}
